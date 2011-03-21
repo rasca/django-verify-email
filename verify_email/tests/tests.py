@@ -89,7 +89,6 @@ class VerifyEmailFormTests(TestCase):
 
         self.assertEqual(Verification.objects.count(), 1)
         self.assertTrue(len(mail.outbox), 1)
-        print mail.outbox[0].body
 
 
 
