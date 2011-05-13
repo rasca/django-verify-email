@@ -85,10 +85,18 @@ class VerifyEmailFormTests(TestCase):
         self.assertEqual(Verification.objects.count(), 0)
 
         request = factory.get('/test/')
-        form.save(request)
+        form.save(request, 'verification_email2.html', 'subject')
 
         self.assertEqual(Verification.objects.count(), 1)
         self.assertTrue(len(mail.outbox), 1)
 
 
+class TemplateTests(TestCase):
+    urls = 'verify_email.tests.urls'
 
+    def test_templates(self):
+        data = {'email': 'test1@test.com', }
+        response = self.client.post('/other-view2/', data)
+        self.assertTrue(len(mail.outbox), 1)
+        self.assertTrue(mail.outbox[0].subject, 'YOUR SUBJECT HERE2')
+        self.assertTrue(mail.outbox[0].body, 'TEMPLATE')

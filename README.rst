@@ -36,7 +36,7 @@ and a thank you message to another view. For example:
     from django.views.generic.edit import FormView
     from verify_email.forms import VerifyEmailForm
 
-    def VerifyEmailView(FormView):
+    class VerifyEmailView(FormView):
        form_class = VerifyEmailForm 
        template_name = 'verify_email/form.html'
        success_url = 'verify_email/thank_you.html'
@@ -45,7 +45,10 @@ and a thank you message to another view. For example:
     def restricted_view(request, email):
         pass
 
-You can find VerifyEmailView in verify_email.views
+You can find VerifyEmailView in verify_email.views. You also should override
+the default template and subject for the email. You can achieve this by setting
+`verification_template` and `verification_subject`, or by overriding
+`get_verification_template()` and `get_verification_subject()`.
 
 I'm planning on adding support for sessions, so we can keep track of the
 verifications. I'll implement this for the next release:

@@ -17,3 +17,6 @@ DATABASES = {
     },
 }
 
+TEMPLATE_DIRS = (
+    os.path.join(os.getcwd(), 'templates/'),
+)

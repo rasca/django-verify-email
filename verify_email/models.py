@@ -55,17 +55,13 @@ class Verification(models.Model):
             self.hash = self.create_hash()
         return super(Verification, self).save(*args, **kwargs)
 
-    def send_verification_email(self, url):
+    def send_verification_email(self, url, template, subject):
         context = {'verification': self, 'url': url, }
-
-        subject = render_to_string(
-            'verify_email/verification_email_subject.txt', context)
 
         # The subject can't contain newlines
         subject = ''.join(subject.splitlines())
         
-        message = render_to_string('verify_email/verification_email.html',
-                                   context)
+        message = render_to_string(template, context)
         
         msg = EmailMessage(subject, message, settings.DEFAULT_FROM_EMAIL,
                            [self.email, ])
