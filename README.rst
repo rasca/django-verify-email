@@ -9,6 +9,8 @@ This apps lets you verify an email, and then grant access to a certain view.
 
 Sample usage:
 
+::
+
     @verify_email
     def restricted_view(request, email):
         pass
@@ -32,6 +34,8 @@ You can achieve this by passing arguments to the decorator:
 
 You can also delegate the responsability of displaying the `VerifyEmailForm`
 and a thank you message to another view. For example:
+
+::
 
     from django.views.generic.edit import FormView
     from verify_email.forms import VerifyEmailForm
