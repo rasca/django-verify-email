@@ -8,5 +8,5 @@ setup(
     packages=['verify_email',],
     license='BSD',
     description='verifies email addresses to grant permission to views',
-    long_description=open('README.txt').read(),
+    long_description=open('README.rst').read(),
 )
